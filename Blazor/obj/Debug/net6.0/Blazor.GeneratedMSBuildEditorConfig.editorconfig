@@ -1,0 +1,75 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = browser
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = true
+build_property.IncludeAllContentForSelfExtract = 
+build_property.RootNamespace = Blazor
+build_property.RootNamespace = Blazor
+build_property.ProjectDir = /Users/myfolder007/Downloads/cs_app/Blazor/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/myfolder007/Downloads/cs_app/Blazor
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Components/BookingsList1/BookingsList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Cb29raW5nc0xpc3QxL0Jvb2tpbmdzTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Pages/Index1.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgxLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Pages/Index2.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Components/BookingsList1/AviasList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Cb29raW5nc0xpc3QxL0F2aWFzTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-dcmeo8b5ft
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Components/BookingsList1/PassengersList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Cb29raW5nc0xpc3QxL1Bhc3NlbmdlcnNMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-rbcn2wwz7t
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Pages/Avia.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXZpYS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-0wxhzxfigw
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Pages/Booking.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQm9va2luZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-gp3mez78gd
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Pages/Passenger.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFzc2VuZ2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-51d2lhwwme
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-qt6tgh2907
+
+[/Users/myfolder007/Downloads/cs_app/Blazor/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-32xpj7b96w

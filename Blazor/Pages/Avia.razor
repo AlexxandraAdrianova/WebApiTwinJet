@@ -1,0 +1,107 @@
+@page "/avia/{aviaId}"
+@using Blazor.Services
+
+@code {
+
+    [Parameter]
+    public string AviaId { get; set; }
+
+    public List<Data.Models.Avia> Avias { get; set; }
+    public Data.Models.Avia? CurrentAvia { get; set; }
+
+    [Inject]
+    private IAviaProvider aviasProvider { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        CurrentAvia = await aviasProvider.GetOne(Int32.Parse(AviaId));
+        Avias = await aviasProvider.GetAll();
+        Console.WriteLine(CurrentAvia);
+        base.OnInitialized();
+    }
+
+}
+
+
+<h3>Информация о рейсе</h3>
+
+@if (CurrentAvia != null)
+{
+    <div class="aviaBlock">
+        <div class="field">
+            <label class="label">Идентификатор</label> <input class="form-control valueField" type="text" value="@CurrentAvia.Id" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Страна</label> <input class="form-control valueField" type="text" value="@CurrentAvia.Country" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Стоимость</label> <input class="form-control valueField" type="text" value="@CurrentAvia.Price" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Место</label> <input class="form-control valueField" type="text" value="@CurrentAvia.Place" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Пункт назначения</label> <input class="form-control valueField" type="text" value="@CurrentAvia.Dest" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Посадочный талон</label> <input class="form-control valueField" type="text" value="@CurrentAvia.NumPass" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Рейс</label> <input class="form-control valueField" type="text" value="@CurrentAvia.Flight" aria-label="Disabled input example" disabled readonly>
+        </div>
+    </div>
+
+    <h3>Пассажиры</h3>
+    <table class="table">
+        <thead>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Отчество</th>
+        <th>Возраст</th>
+        <th>Паспортные данные</th>
+        </thead>
+        <tbody>
+        @foreach (var art in CurrentAvia.Passengers)
+        {
+            <tr>
+                <td>@art.Name</td>
+                <td>@art.Surname</td>
+                <td>@art.SecName</td>
+                <td>@art.Age</td>
+                <td>@art.Doc</td>
+                <td>
+                    <div class="artAvias">
+                        @foreach (var artAvias in Avias)
+                        {
+                            if (artAvias.Passengers.Any(x => x.Id == art.Id))
+                            {
+                                <span class="aviaTag">@artAvias.Flight</span>
+                            }
+                        }
+                    </div >
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <h3>Бронирования</h3>
+    <table class="table">
+        <thead>
+        <th>Страна</th>
+        <th>Город</th>
+        <th>Место</th>
+        </thead>
+        <tbody>
+        @foreach (var tic in CurrentAvia.Bookings)
+        {
+            <tr >
+                <td>@tic.Hotel</td>
+                <td>@tic.GuideName</td>
+                <td>@tic.Room</td>
+                <td>@tic.CarName</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

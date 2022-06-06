@@ -1,0 +1,105 @@
+@page "/booking/{bookingId}"
+@using Blazor.Services
+
+@code {
+
+    [Parameter]
+    public string BookingId { get; set; }
+
+    public List<Data.Models.Booking> Bookings { get; set; }
+    public Data.Models.Booking? CurrentBooking { get; set; }
+
+    [Inject]
+    private IBookingProvider bookingsProvider { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        CurrentBooking = await bookingsProvider.GetOne(Int32.Parse(BookingId));
+        Bookings = await bookingsProvider.GetAll();
+        Console.WriteLine(CurrentBooking);
+        base.OnInitialized();
+    }
+
+}
+
+
+<h3>Информация о бронировании</h3>
+
+@if (CurrentBooking != null)
+{
+    <div class="bookingBlock">
+        <div class="field">
+            <label class="label">Идентификатор</label> <input class="form-control valueField" type="text" value="@CurrentBooking.Id" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Страна</label> <input class="form-control valueField" type="text" value="@CurrentBooking.Hotel" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Стоимость</label> <input class="form-control valueField" type="text" value="@CurrentBooking.Room" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Место</label> <input class="form-control valueField" type="text" value="@CurrentBooking.CarName" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Пункт назначения</label> <input class="form-control valueField" type="text" value="@CurrentBooking.GuideName" aria-label="Disabled input example" disabled readonly>
+        </div>
+    </div>
+
+    <h3>Рейсы</h3>
+    <table class="table">
+        <thead>
+        <th>Страна</th>
+        <th>Стоимость</th>
+        <th>Место</th>
+        <th>Посадочный талон</th>
+        <th>Рейс</th>
+        </thead>
+        <tbody>
+        @foreach (var art in CurrentBooking.Avias)
+        {
+            <tr>
+                <td>@art.Country</td>
+                <td>@art.Price</td>
+                <td>@art.Place</td>
+                <td>@art.Dest</td>
+                <td>@art.NumPass</td>
+                <td>@art.Flight</td>
+                <td>
+                    <div class="artPassengers">
+                        @foreach (var artPassengers in Bookings)
+                        {
+                            if (artPassengers.Passengers.Any(x => x.Id == art.Id))
+                            {
+                                <span class="bookingTag">@artPassengers.Hotel</span>
+                            }
+                        }
+                    </div >
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <h3>Пассажиры</h3>
+    <table class="table">
+        <thead>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>Паспортные данные</th>
+        </thead>
+        <tbody>
+        @foreach (var tic in CurrentBooking.Passengers)
+        {
+            <tr >
+                <td>@tic.Name</td>
+                <td>@tic.SecName</td>
+                <td>@tic.Surname</td>
+                <td>@tic.Age</td>
+                <td>@tic.Doc</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

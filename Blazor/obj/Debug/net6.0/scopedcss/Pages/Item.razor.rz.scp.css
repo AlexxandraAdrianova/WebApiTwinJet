@@ -1,0 +1,28 @@
+field[b-pd87n4idrw] {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+.itemBlock[b-pd87n4idrw] {
+    display: flex;
+    flex-direction: column;
+}
+.label[b-pd87n4idrw] {
+    width: 200px;
+}
+.valueField[b-pd87n4idrw] {
+    width: 400px;
+}
+.artItems[b-pd87n4idrw] {
+    display: flex;
+    flex-direction: column;
+}
+.itemTag[b-pd87n4idrw] {
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #8b008bff;
+    border-radius: 8px;
+    background-color: #ff00ff44;
+}
+
+

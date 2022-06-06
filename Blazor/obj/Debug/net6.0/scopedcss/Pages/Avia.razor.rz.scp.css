@@ -1,0 +1,28 @@
+field[b-0wxhzxfigw] {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+.aviaBlock[b-0wxhzxfigw] {
+    display: flex;
+    flex-direction: column;
+}
+.label[b-0wxhzxfigw] {
+    width: 200px;
+}
+.valueField[b-0wxhzxfigw] {
+    width: 400px;
+}
+.artAvias[b-0wxhzxfigw] {
+    display: flex;
+    flex-direction: column;
+}
+.aviaTag[b-0wxhzxfigw] {
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #8b008bff;
+    border-radius: 8px;
+    background-color: #ff00ff44;
+}
+
+

@@ -1,0 +1,107 @@
+@page "/passenger/{passengerId}"
+@using Blazor.Services
+
+@code {
+
+    [Parameter]
+    public string PassengerId { get; set; }
+
+    public List<Data.Models.Passenger> Passengers { get; set; }
+    public Data.Models.Passenger? CurrentPassenger { get; set; }
+
+    [Inject]
+    private IPassengerProvider passengersProvider { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        CurrentPassenger = await passengersProvider.GetOne(Int32.Parse(PassengerId));
+        Passengers = await passengersProvider.GetAll();
+        Console.WriteLine(CurrentPassenger);
+        base.OnInitialized();
+    }
+
+}
+
+
+<h3>Информация о рейсе</h3>
+
+@if (CurrentPassenger != null)
+{
+    <div class="passengerBlock">
+        <div class="field">
+            <label class="label">Идентификатор</label> <input class="form-control valueField" type="text" value="@CurrentPassenger.Id" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Имя</label> <input class="form-control valueField" type="text" value="@CurrentPassenger.Name" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Отчество</label> <input class="form-control valueField" type="text" value="@CurrentPassenger.SecName" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Фамилия</label> <input class="form-control valueField" type="text" value="@CurrentPassenger.Surname" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+            <label class="label">Возраст</label> <input class="form-control valueField" type="text" value="@CurrentPassenger.Age" aria-label="Disabled input example" disabled readonly>
+        </div>
+        <div class="field">
+                    <label class="label">Паспортные данные</label> <input class="form-control valueField" type="text" value="@CurrentPassenger.Doc" aria-label="Disabled input example" disabled readonly>
+                </div>
+    </div>
+
+    <h3>Бронирования</h3>
+    <table class="table">
+        <thead>
+        <th>Название отеля</th>
+        <th>Номер отеля</th>
+        <th>Название автобуса</th>
+        <th>Имя гида</th>
+        </thead>
+        <tbody>
+        @foreach (var art in CurrentPassenger.Bookings)
+        {
+            <tr>
+                <td>@art.Hotel</td>
+                <td>@art.Room</td>
+                <td>@art.CarName</td>
+                <td>@art.GuideName</td>
+                <td>
+                    <div class="artPassengers">
+                        @foreach (var artPassengers in Passengers)
+                        {
+                            if (artPassengers.Avias.Any(x => x.Id == art.Id))
+                            {
+                                <span class="passengerTag">@artPassengers.Name</span>
+                            }
+                        }
+                    </div >
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <h3>Рейсы</h3>
+    <table class="table">
+        <thead>
+        <th>Страна</th>
+        <th>Стоимость</th>
+        <th>Место</th>
+        <th>Пункт назначения</th>
+        <th>Рейс</th>
+        <th>Посадочный талон</th>
+        </thead>
+        <tbody>
+        @foreach (var tic in CurrentPassenger.Avias)
+        {
+            <tr >
+                <td>@tic.Country</td>
+                <td>@tic.Price</td>
+                <td>@tic.Place</td>
+                <td>@tic.Dest</td>
+                <td>@tic.Flight</td>
+                <td>@tic.NumPass</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

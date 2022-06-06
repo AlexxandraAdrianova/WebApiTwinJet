@@ -1,0 +1,51 @@
+﻿@using Blazor.Data.Models
+@using Blazor.Services
+@inject NavigationManager _navigationManager
+
+
+<h1>Список рейсов</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Страна</th>
+        <th>Цена</th>
+        <th>Место</th>
+        <th>Пункт назначения</th>
+        <th>Посадочный талон</th>
+        <th>Рейс</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (_avias != null)
+    {
+       @foreach (var avia in _avias)
+        {
+            <tr  @onclick="()=>ToAvia(avia)">
+                <td>@avia.Id</td>
+                <td>@avia.Country</td>
+                <td>@avia.Price</td>
+                <td>@avia.Place</td>
+                <td>@avia.Dest</td>
+                <td>@avia.NumPass</td>
+                <td>@avia.Flight</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+
+@code {
+    private List<Avia>? _avias;
+    [Inject]
+    private IAviaProvider AviasProvider { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        _avias = await AviasProvider.GetAll();
+    }
+    public void ToAvia(Avia avia)
+    {
+        _navigationManager.NavigateTo($"/avia/{avia.Id}");
+    }
+}

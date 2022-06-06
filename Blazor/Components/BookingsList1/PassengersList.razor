@@ -1,0 +1,49 @@
+﻿@using Blazor.Data.Models
+@using Blazor.Services
+@inject NavigationManager _navigationManager
+
+
+<h1>Список пассажиров</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>Паспортные данные</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (_passengers != null)                                         
+    {
+       @foreach (var passenger in _passengers)
+        {
+            <tr  @onclick="()=>ToPassenger(passenger)">
+                <td>@passenger.Id</td>
+                <td>@passenger.Name</td>
+                <td>@passenger.SecName</td>
+                <td>@passenger.Surname</td>
+                <td>@passenger.Age</td>
+                <td>@passenger.Doc</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+
+@code {
+    private List<Passenger>? _passengers;
+    [Inject]
+    private IPassengerProvider PassengersProvider { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        _passengers = await PassengersProvider.GetAll();
+    }
+    public void ToPassenger(Passenger passenger)
+    {
+        _navigationManager.NavigateTo($"/passenger/{passenger.Id}");
+    }
+}
